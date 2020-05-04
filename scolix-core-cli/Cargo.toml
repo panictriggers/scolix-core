@@ -5,5 +5,4 @@ authors = ["Hugo Woesthuis <hugow2011@outlook.com>", "Mike Krop <mikekrop2002@ho
 edition = "2018"
 
 [dependencies]
-tokio = { version = "0.2", features = ["full"] }
-rusqlite = "0.23.1"
+term = "*"
