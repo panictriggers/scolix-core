@@ -13,30 +13,33 @@ struct Person {
     data: Option<Vec<u8>>,
 }
 
-fn GetDataSQL(Database: str, Table: str) Data: string{
-    let conn = Connection::open_in_memory().unwrap();
-    
+fn GetDataSQL(Database: str, Table: str) {
+    let conn = Connection::open_in_memory().unwrap();  
     conn.execute(
-        "USE",
-        NO_PARAMS,
+        "USE ?1", &[&Database]
     )
     .unwrap();
-
-    let mut stmt = conn
-        .prepare("SELECT id, name, time_created, data FROM person")
-        .unwrap();
-    let mut Data: string
-        .query_map(NO_PARAMS, |row| Person {
-            id: row.get(0),
-            name: row.get(1),
-            time_created: row.get(2),
-            data: row.get(3),
-        })
+    let mut stmt = conn;
+        conn.execute("SELECT * FROM ?1", &[&Table])
         .unwrap();
 
+    
+/*   
+    let person_iter = stmt
+    .query_map(NO_PARAMS, |row| Data {
+        id: row.get(0),
+        name: row.get(1),
+        time_created: row.get(2),
+        data: row.get(3),
+    })
+    .unwrap();
+    return Data
+    */
+    
 }
 
 
+/*
 
 fn main() {
     let conn = Connection::open_in_memory().unwrap();
@@ -80,3 +83,4 @@ fn main() {
         println!("Found person {:?}", person.unwrap());
     }
 }
+*/
