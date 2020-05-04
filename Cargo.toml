@@ -3,5 +3,5 @@
 
 [workspace]
 
-members = ["daemon", "core-cli"]
+members = ["scolix-core-daemon", "scolix-core-cli"]
 

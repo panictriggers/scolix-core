@@ -7,3 +7,4 @@ edition = "2018"
 [dependencies]
 tokio = { version = "0.2", features = ["full"] }
 rusqlite = "0.23.1"
+scolix-core-cli = { version = "0.1.0", path = "../scolix-core-cli" }
