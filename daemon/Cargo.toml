@@ -1,7 +1,7 @@
 [package]
 name = "scolix-core"
 version = "0.1.0"
-authors = ["Hugo Woesthuis <hugow2011@outlook.com>"]
+authors = ["Hugo Woesthuis <hugow2011@outlook.com>", "Mike Krop <mikekrop2002@hotmail.com>"]
 edition = "2018"
 
 [dependencies]
