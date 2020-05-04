@@ -1,5 +1,5 @@
 [package]
-name = "scolix-core"
+name = "scolix-core-cli"
 version = "0.1.0"
 authors = ["Hugo Woesthuis <hugow2011@outlook.com>", "Mike Krop <mikekrop2002@hotmail.com>"]
 edition = "2018"
