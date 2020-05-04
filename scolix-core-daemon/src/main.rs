@@ -3,7 +3,7 @@ mod localhost;
 mod remote;
 use scolix_core_cli;
 use std::thread;
-
+use std::process;
 
 /*  Build code format:
     aaaaaaaa-yyyyddmm-bbbbbb
@@ -18,14 +18,23 @@ fn printintro(){
 // Entry point
 fn main() {
     printintro();
+
+    ctrlc::set_handler(move || {
+        scolix_core_cli::printwarn("Shutting down...");
+        process::exit(0);
+    })
+    .expect("Error setting Ctrl-C handler");
+
     // spawn new threads
-    thread::spawn(move || { localhost::server::startsrv(); });
+    scolix_core_cli::printinfo("Starting local srv");
+    thread::spawn(move || { let r = localhost::server::startsrv(); println!("{:?}", r)});
     scolix_core_cli::printok("Local server started");
     scolix_core_cli::printinfo("Starting remote srv");
-    thread::spawn(move || { remote::server::startsrv(); });
+    thread::spawn(move || { let r = remote::server::startsrv(); println!("{:?}", r) });
     scolix_core_cli::printok("Remote server started");
-
     // start watching for printing events
+
+    loop{}
 }
 
 
