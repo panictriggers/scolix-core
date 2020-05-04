@@ -1,0 +1,9 @@
+[package]
+name = "scolix-core"
+version = "0.1.0"
+authors = ["Hugo Woesthuis <hugow2011@outlook.com>"]
+edition = "2018"
+
+[dependencies]
+tokio = { version = "0.2", features = ["full"] }
+rusqlite = "0.23.1"
