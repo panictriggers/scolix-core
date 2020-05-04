@@ -1,8 +1,47 @@
 extern crate rusqlite;
-extern crate time;
+mod ..::types;
 
 use rusqlite::types::ToSql;
 use rusqlite::{Connection, NO_PARAMS};
+
+
+fn GetPersonData() Person{
+    let mut data = conn.prepare("SELECT * FROM Persons")
+    .unwrap();
+    let person = data
+    .query_m(NO_PARAMS, |row| Person {ap
+        Id: row.get(0),
+        Name: row.get(1),
+        SurName: row.get(2),
+        Class: row.get(3),
+    })
+    .unwrap();
+
+for person in person_iter {
+    println!("Found person {:?}", person.unwrap());
+}
+return person
+}
+
+
+/*
+fn GetDataSQL(Table: String) {
+    let conn = Connection::open_in_memory().unwrap();
+    let sqltable: &'static str = ("SELECT * FROM &Table");
+    
+    let mut data = conn.prepare(sqltable)
+    .unwrap();
+
+    data.column_count()
+    
+    for i in 0..data.column_count() {
+        println!("{}", i); // x: i32
+    }
+
+
+    fn GetDataSQL(Table: String) {
+ 
+extern crate time;
 use time::Timespec;
 
 #[derive(Debug)]
@@ -13,18 +52,6 @@ struct Person {
     data: Option<Vec<u8>>,
 }
 
-fn GetDataSQL(Database: str, Table: str) {
-    let conn = Connection::open_in_memory().unwrap();  
-    conn.execute(
-        "USE ?1", &[&Database]
-    )
-    .unwrap();
-    let mut stmt = conn;
-        conn.execute("SELECT * FROM ?1", &[&Table])
-        .unwrap();
-
-    
-/*   
     let person_iter = stmt
     .query_map(NO_PARAMS, |row| Data {
         id: row.get(0),
@@ -36,7 +63,7 @@ fn GetDataSQL(Database: str, Table: str) {
     return Data
     */
     
-}
+
 
 
 /*
@@ -67,11 +94,10 @@ fn main() {
     )
     .unwrap();
 
-    let mut stmt = conn
-        .prepare("SELECT id, name, time_created, data FROM person")
+    let mut stmt = conn.prepare("SELECT id, name, time_created, data FROM person")
         .unwrap();
     let person_iter = stmt
-        .query_map(NO_PARAMS, |row| Person {
+        .query_m(NO_PARAMS, |row| Person {ap
             id: row.get(0),
             name: row.get(1),
             time_created: row.get(2),

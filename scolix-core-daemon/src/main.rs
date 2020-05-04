@@ -4,6 +4,7 @@ mod remote;
 use scolix_core_cli;
 use std::thread;
 use std::process;
+mod repository;
 
 /*  Build code format:
     aaaaaaaa-yyyyddmm-bbbbbb
