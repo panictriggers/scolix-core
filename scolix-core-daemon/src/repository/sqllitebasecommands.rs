@@ -1,11 +1,11 @@
 extern crate rusqlite;
-mod ..::types;
+use types;
 
 use rusqlite::types::ToSql;
 use rusqlite::{Connection, NO_PARAMS};
 
 
-fn GetPersonData() Person{
+fn GetPersonData() -> Person{
     let mut data = conn.prepare("SELECT * FROM Persons")
     .unwrap();
     let person = data
