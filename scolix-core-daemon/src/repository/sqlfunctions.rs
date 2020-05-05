@@ -6,10 +6,11 @@ use rusqlite::{Connection, NO_PARAMS};
 
 
 fn GetPersonData() -> Person{
+    let conn = Connection::open_in_memory().unwrap();
     let mut data = conn.prepare("SELECT * FROM Persons")
     .unwrap();
     let persons = data
-    .query_m(NO_PARAMS, |row| Person {ap
+    .query_map(NO_PARAMS, |row| Person {ap
         Id: row.get(0),
         Name: row.get(1),
         SurName: row.get(2),
