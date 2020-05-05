@@ -8,7 +8,7 @@ use rusqlite::{Connection, NO_PARAMS};
 fn GetPersonData() -> Person{
     let mut data = conn.prepare("SELECT * FROM Persons")
     .unwrap();
-    let person = data
+    let persons = data
     .query_m(NO_PARAMS, |row| Person {ap
         Id: row.get(0),
         Name: row.get(1),
@@ -17,10 +17,10 @@ fn GetPersonData() -> Person{
     })
     .unwrap();
 
-for person in person_iter {
+for person in persons {
     println!("Found person {:?}", person.unwrap());
 }
-return person
+return persons
 }
 
 
