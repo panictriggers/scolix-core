@@ -1,8 +1,5 @@
 [package]
-name = "scolix-core-cli"
+name = "scolix-core-types"
 version = "0.1.0"
 authors = ["Hugo Woesthuis <hugow2011@outlook.com>"]
 edition = "2018"
-
-[dependencies]
-term = "*"

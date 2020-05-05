@@ -1,16 +1,17 @@
 extern crate rusqlite;
-use types;
+
+use scolix_core_types;
 
 use rusqlite::types::ToSql;
 use rusqlite::{Connection, NO_PARAMS};
 
 
-fn GetPersonData() -> Person{
+fn GetPersonData() -> scolix_core_types::Person{
     let conn = Connection::open_in_memory().unwrap();
     let mut data = conn.prepare("SELECT * FROM Persons")
     .unwrap();
     let persons = data
-    .query_map(NO_PARAMS, |row| Person {ap
+    .query_map(NO_PARAMS, |row| scolix_core_types::Person {ap
         Id: row.get(0),
         Name: row.get(1),
         SurName: row.get(2),
