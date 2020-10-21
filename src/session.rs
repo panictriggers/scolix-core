@@ -7,7 +7,7 @@ use bit_field::BitField;
 struct Session{
     id: String,
     usr: u32,
-    privl: u32
+    scopes: u8
 }
 
 impl Session{
@@ -19,14 +19,14 @@ impl Session{
             .take(32)
             .collect(),
             usr: 0,
-            privl: 0
+            scopes: 0
         }
     }
     fn set_user(&mut self, _id: u32){
         self.usr = _id;
     }
-    fn set_privl(&mut self, _privledges: u32){
-        self.privl = _privledges;
+    fn set_privl(&mut self, _scope: u8){
+        self.scopes = _scope;
     }
     fn get_userid(&self) -> u32{
         return self.usr;
@@ -44,8 +44,8 @@ perf_userinf = Performance related info (Grades)
 abs_userinf = Absence related info
 */
 
-struct PrivlEmployee{
-    administator: bool,
+
+struct DataScopes{
     userinf_read: bool,
     userinf_write: bool,
     sensinf_read: bool,
@@ -56,10 +56,9 @@ struct PrivlEmployee{
     abs_usrinf_write: bool
 }
 
-impl PrivlEmployee{
-    fn new() -> PrivlEmployee{
-        return PrivlEmployee{
-            administator: false,
+impl DataScopes{
+    fn new() -> DataScopes{
+        return DataScopes{
             userinf_read: false,
             userinf_write: false,
             sensinf_read: false,
@@ -70,30 +69,28 @@ impl PrivlEmployee{
             abs_usrinf_write: false
         }
     }
-    fn from_bitfield(_bf: u32) -> PrivlEmployee{
-        return PrivlEmployee{
-            administator: _bf.get_bit(0),
-            userinf_read: _bf.get_bit(1),
-            userinf_write: _bf.get_bit(2),
-            sensinf_read: _bf.get_bit(3),
-            sensinf_write: _bf.get_bit(4),
-            perfinf_read: _bf.get_bit(5),
-            perfinf_write: _bf.get_bit(6),
-            abs_usrinf_read: _bf.get_bit(7),
-            abs_usrinf_write: _bf.get_bit(8)
+    fn from_bitfield(_bf: u8) -> DataScopes{
+        return DataScopes{
+            userinf_read: _bf.get_bit(0),
+            userinf_write: _bf.get_bit(1),
+            sensinf_read: _bf.get_bit(2),
+            sensinf_write: _bf.get_bit(3),
+            perfinf_read: _bf.get_bit(4),
+            perfinf_write: _bf.get_bit(5),
+            abs_usrinf_read: _bf.get_bit(6),
+            abs_usrinf_write: _bf.get_bit(7)
         }
     }
-    fn to_bitfield(&self) -> u32{
-        let mut i: u32 = 0;
-        i.set_bit(0, self.administator);
-        i.set_bit(1, self.userinf_read);
-        i.set_bit(2, self.userinf_write);
-        i.set_bit(3, self.sensinf_read);
-        i.set_bit(4, self.sensinf_write);
-        i.set_bit(5, self.perfinf_read);
-        i.set_bit(6, self.perfinf_write);
-        i.set_bit(7, self.abs_usrinf_read);
-        i.set_bit(8, self.abs_usrinf_write);
+    fn to_bitfield(&self) -> u8{
+        let mut i: u8 = 0;
+        i.set_bit(0, self.userinf_read);
+        i.set_bit(1, self.userinf_write);
+        i.set_bit(2, self.sensinf_read);
+        i.set_bit(3, self.sensinf_write);
+        i.set_bit(4, self.perfinf_read);
+        i.set_bit(5, self.perfinf_write);
+        i.set_bit(6, self.abs_usrinf_read);
+        i.set_bit(7, self.abs_usrinf_write);
         return i;
     }
 }
