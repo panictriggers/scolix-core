@@ -12,6 +12,7 @@
 
 
 mod consts;
+mod db;
 
 fn main() {
     println!("Scolix Core {}", consts::BUILDVERSION);
