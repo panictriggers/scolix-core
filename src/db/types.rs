@@ -30,7 +30,10 @@ City - City of user - String - [sensitive_userinfo]
 Medical - Medical info - String - [sensitve_userinfo]
 
 studentID - ID of linked student (see Student struct) - int32 - [userinfo] - CAN BE NULL
-tutorID - ID of tutor link (see Tutor struct) - int32 - [userinfo] - CAN BE NULL
+teacherID - ID of tutor link (see Tutor struct) - int32 - [userinfo] - CAN BE NULL
+
+privledges - Bitfield for rights - int32 - [ALL] 
+
 */
 
 struct Student{
@@ -54,4 +57,5 @@ struct Teacher{
     user: User,
     data: HashMap<String, String>
 }
+
 
