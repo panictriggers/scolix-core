@@ -17,4 +17,5 @@ mod session;
 
 fn main() {
     println!("Scolix Core {}", consts::BUILDVERSION);
+    db::sql::FirstSetup();
 }

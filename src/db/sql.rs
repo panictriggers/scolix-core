@@ -1,8 +1,8 @@
 use rusqlite::{Connection, Result};
 use rusqlite::NO_PARAMS;
 
-fn FirstSetup() {
-    let conn = Connection::open("../data/db/Scolix_HQ.db")?;
+pub fn FirstSetup() -> Result<()> {
+    let conn = Connection::open("../data/db/Scolix_HQ.db").unwrap();
 
     // USER table
     conn.execute(
@@ -24,7 +24,7 @@ fn FirstSetup() {
             teacherID INTEGER NULL references Teachers(id)
          )",
         NO_PARAMS,
-    )?;
+    ).unwrap();
 
     // STUDENTS table
     conn.execute(
@@ -38,7 +38,7 @@ fn FirstSetup() {
             gradesref TEXT NULL
          )",
         NO_PARAMS,
-    )?;
+    ).unwrap();
 
     // TEACHERS table
     conn.execute(
@@ -50,7 +50,7 @@ fn FirstSetup() {
             
         )",
         NO_PARAMS,
-    )?;
+    ).unwrap();
 
     // DIFFICULTY table
     conn.execute(
@@ -59,7 +59,7 @@ fn FirstSetup() {
             name TEXT NOT NULL
          )",
         NO_PARAMS,
-    )?;
+    ).unwrap();
 
     // SUBJECTS table
     conn.execute(
@@ -68,7 +68,7 @@ fn FirstSetup() {
             name TEXT NOT NULL
          )",
         NO_PARAMS,
-    )?;
+    ).unwrap();
 
     // CLASSES table
     conn.execute(
@@ -78,7 +78,7 @@ fn FirstSetup() {
             abr TEXT NOT NULL
          )",
         NO_PARAMS,
-    )?;
+    ).unwrap();
 
     // EVENTS table
     conn.execute(
@@ -87,22 +87,22 @@ fn FirstSetup() {
             name TEXT NOT NULL,
             discription TEXT NULL,
             homework TEXT NULL,
-            type_exam INTEGER NULL references Type_Exams(id)
+            type_exam INTEGER NULL references TypeExams(id)
             members TEXT NULL,
             classID TEXT NULL,
             teachersID TEXT NULL
          )",
         NO_PARAMS,
-    )?;
+    ).unwrap();
 
     // TYPE_EXAM
     conn.execute(
-        "create table if not exists Type_Exam (
+        "create table if not exists TypeExam (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL
          )",
         NO_PARAMS,
-    )?;
+    ).unwrap();
 
     Ok(())
 }
