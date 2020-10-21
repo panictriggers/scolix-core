@@ -107,7 +107,7 @@ classID TEXT NULL,
 teachersID TEXT NULL
 */
 
-struct Type_Exam{
+struct TypeExam{
     user: User,
     data: HashMap<String, String>
 }

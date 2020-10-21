@@ -9,10 +9,11 @@
 // Don't build with warnings or unsafe code
 // #![deny(warnings)]
 #![deny(unsafe_code)]
-
+#![allow(dead_code)]
 
 mod consts;
 mod db;
+mod session;
 
 fn main() {
     println!("Scolix Core {}", consts::BUILDVERSION);
