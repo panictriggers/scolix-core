@@ -57,5 +57,61 @@ struct Teacher{
     user: User,
     data: HashMap<String, String>
 }
+/*
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+abr TEXT NOT NULL,
+subject INTEGER NOT NULL references Subjects(id),
+mentorclass INTEGER NOT NULL references Classes(id),
+*/
 
+struct Difficulty{
+    user: User,
+    data: HashMap<String, String>
+}
+/*
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL
+*/
 
+struct Subjects{
+    user: User,
+    data: HashMap<String, String>
+}
+/*
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL
+*/
+
+struct Classes{
+    user: User,
+    data: HashMap<String, String>
+}
+/*
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+abr TEXT NOT NULL
+*/
+
+struct Events{
+    user: User,
+    data: HashMap<String, String>
+}
+/*
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL,
+discription TEXT NULL,
+homework TEXT NULL,
+type_exam INTEGER NULL references Type_Exams(id)
+members TEXT NULL,
+classID TEXT NULL,
+teachersID TEXT NULL
+*/
+
+struct Type_Exam{
+    user: User,
+    data: HashMap<String, String>
+}
+/*
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT NOT NULL
+*/
