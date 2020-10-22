@@ -2,7 +2,7 @@ use rusqlite::{Connection, Result};
 use rusqlite::NO_PARAMS;
 
 pub fn FirstSetup() -> Result<()> {
-    let conn = Connection::open("../data/db/Scolix_HQ.db").unwrap();
+    let conn = Connection::open("../data/core.db").unwrap();
 
     // USER table
     conn.execute(
