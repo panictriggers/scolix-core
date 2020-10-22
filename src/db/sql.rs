@@ -46,8 +46,7 @@ pub fn FirstSetup() -> Result<()> {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             abr TEXT NOT NULL,
             subject INTEGER NOT NULL references Subjects(id),
-            mentorclass INTEGER NOT NULL references Classes(id),
-            
+            mentorclass INTEGER NOT NULL references Classes(id) 
         )",
         NO_PARAMS,
     ).unwrap();
@@ -87,7 +86,7 @@ pub fn FirstSetup() -> Result<()> {
             name TEXT NOT NULL,
             discription TEXT NULL,
             homework TEXT NULL,
-            type_exam INTEGER NULL references TypeExams(id)
+            type_exam INTEGER NULL references TypeExams(id),
             members TEXT NULL,
             classID TEXT NULL,
             teachersID TEXT NULL
