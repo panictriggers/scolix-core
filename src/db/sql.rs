@@ -21,7 +21,8 @@ pub fn FirstSetup() -> Result<()> {
             city TEXT NULL,
             medical TEXT NOT NULL,
             studentID INTEGER NULL references Students(id),
-            teacherID INTEGER NULL references Teachers(id)
+            teacherID INTEGER NULL references Teachers(id),
+            active BOOL NOT NULL
          )",
         NO_PARAMS,
     ).unwrap();
